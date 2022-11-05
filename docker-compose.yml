@@ -5,8 +5,20 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: "0000"
-      POSTGRES_USER: "postgres"
-      POSTGRES_DB: "rosatom_labs"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}: -0000"
+      POSTGRES_USER: "${POSTGRES_USER}: -postgres"
+      POSTGRES_DB: "${rosatom_labs}: -rosatom_labs"
     ports:
       - '5432:5432'
+    env_file:
+      - .env
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}:-example@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}:-0000"
+    ports:
+      - '80:80'
+    env_file:
+      - .env
