@@ -22,3 +22,23 @@ services:
       - '80:80'
     env_file:
       - .env
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PORT: "${PORT}"
+        NAME: "${NAME}"
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      PORT: "${PORT}"
+      NAME: "${NAME}"
+    env_file:
+      - .env
+    restart: always
+
+
+networks:
+  default:
+    name: "${NAME}_backend_network"
