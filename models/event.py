@@ -12,4 +12,3 @@ class Event(Base):
 
     created_at = Column(DateTime, nullable=False, default=datetime.datetime.utcnow())
     planned_at = Column(DateTime, nullable=False)
-
